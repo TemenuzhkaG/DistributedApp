@@ -1,0 +1,81 @@
+﻿@model X.PagedList.IPagedList<MVC_FE.ViewModels.RecipeViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using X.PagedList.Mvc.Core;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<h2>Recipes</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm("Index", "Recipe", FormMethod.Get))
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+<table class="table">
+
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Instructions
+        </th>
+        <th>
+            CookingTime
+        </th>
+        <th>
+            PreparationTime
+        </th>
+        <th>
+            PortionsCount
+        </th>
+        <th>
+            Category
+        </th>
+        <th>
+            Buttons
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Instructions)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CookingTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PreparationTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PortionsCount)
+            </td>
+            <td>
+                @Html.DisplayFor(x => item.CategoryId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, currentFilter = ViewBag.CurrentFilter }))
