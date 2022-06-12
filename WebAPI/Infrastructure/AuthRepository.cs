@@ -8,9 +8,9 @@ namespace WebAPI.Infrastructure
 {
     public class AuthRepository :  IDisposable
     {
-        private readonly AuthDbContext _ctx;
+        private  readonly AuthDbContext _ctx;
 
-        private UserManager<IdentityUser> _userManager;
+        private  readonly UserManager<IdentityUser> _userManager;
 
         public AuthRepository()
         {

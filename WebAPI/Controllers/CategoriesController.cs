@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Services;
 using Services.DTO;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using WebAPI.ResponseHelper;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -24,6 +21,7 @@ namespace WebAPI.Controllers
             this.service = new CategoryService();
             this.message = new Message();
         }
+
         // GET: api/<CategoriesController>
         [HttpGet]
         public IEnumerable<CategoryDTO> Get()
@@ -58,7 +56,7 @@ namespace WebAPI.Controllers
 
         // PUT api/<CategoriesController>/5
         [HttpPut("{id}")]
-        public string Put(int id, [FromBody] CategoryDTO categoryDTO)
+        public string Put([FromBody] CategoryDTO categoryDTO)
         {
             if (!categoryDTO.Validate())
                 return "500 Data is not valid!";
@@ -82,6 +80,7 @@ namespace WebAPI.Controllers
         [HttpDelete("{id}")]
         public string Delete(int id)
         {
+
             if (service.Delete(id))
             {
                 message.Code = 200;

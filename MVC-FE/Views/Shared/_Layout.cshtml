@@ -3,15 +3,16 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MVC_FE</title>
+    <title>@ViewData["Title"] - Recipe site</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
+
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MVC_FE</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Recipe site</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -40,10 +41,9 @@
             @RenderBody()
         </main>
     </div>
-
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; My Cooking disptributed application with MVC and Web api 2022 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="container-for-footer">
+            &copy; My Cooking disptributed application with MVC and Web API 2022
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

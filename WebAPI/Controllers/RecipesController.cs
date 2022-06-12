@@ -54,7 +54,7 @@ namespace WebAPI.Controllers
 
         // PUT api/<RecipesController>/5
         [HttpPut("{id}")]
-        public string Put(int id, [FromBody] RecipeDTO recipeDTO)
+        public string Put([FromBody] RecipeDTO recipeDTO)
         {
             if (!recipeDTO.Validate())
                 return "500 Data is not valid!";

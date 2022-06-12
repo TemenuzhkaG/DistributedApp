@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WebAPI.Infrastructure;
@@ -13,7 +12,7 @@ namespace WebAPI.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private AuthRepository _repo = null;
+        private readonly AuthRepository _repo = null;
 
         public AccountController()
         {
@@ -30,55 +29,9 @@ namespace WebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-           IdentityResult result = await _repo.RegisterUser(userModel);
-
-         /*   IActionResult errorResult = GetErrorResult(result);
-
-            if (errorResult != null)
-            {
-                return errorResult;
-            }*/
+            await _repo.RegisterUser(userModel);
 
             return Ok();
         }
-
-      /*  protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _repo.Dispose();
-            }
-
-            base.Dispose(disposing);
-        }
-
-       private IActionResult GetErrorResult(IdentityResult result)
-        {
-            if (result == null)
-            {
-                return InternalServerError();
-            }
-
-            if (!result.Succeeded)
-            {
-                if (result.Errors != null)
-                {
-                    foreach (string error in result.Errors)
-                    {
-                        ModelState.AddModelError("", error);
-                    }
-                }
-
-                if (ModelState.IsValid)
-                {
-                    // No ModelState errors are available to send, so just return an empty BadRequest.
-                    return BadRequest();
-                }
-
-                return BadRequest(ModelState);
-            }
-
-            return null;
-        }*/
     }
 }

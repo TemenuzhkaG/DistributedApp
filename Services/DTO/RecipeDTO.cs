@@ -1,7 +1,6 @@
 ﻿using Data.Entities;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Services.DTO
@@ -28,10 +27,10 @@ namespace Services.DTO
         public int PortionsCount { get; set; }
         public int CategoryId { get; set; }
 
-        public virtual Category Category { get; set; }
+      //  public virtual Category Category { get; set; }
 
-        public List<IngredientDTO> Ingredients { get; set; }
-        public List<CategoryDTO> Categories { get; set; }
+      //  public List<IngredientDTO> Ingredients { get; set; }
+     //   public List<CategoryDTO> Categories { get; set; }
         public bool Validate()
         {
             if (!String.IsNullOrEmpty(Name))
@@ -41,10 +40,6 @@ namespace Services.DTO
             return false;
 
         }
-
-
-      
-
     }
 
 }

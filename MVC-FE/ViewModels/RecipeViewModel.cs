@@ -29,9 +29,9 @@ namespace MVC_FE.ViewModels
         public int PortionsCount { get; set; }
         public int CategoryId { get; set; }
 
-        public virtual CategoryDTO CategoryDTO { get; set; }
-        public List<IngredientDTO> Ingredients { get; set; }
-        public List<CategoryDTO> Categories { get; set; }
+    //    public virtual CategoryDTO CategoryDTO { get; set; }
+    //    public List<IngredientDTO> Ingredients { get; set; }
+     //   public List<CategoryDTO> Categories { get; set; }
         public RecipeViewModel() { }
 
         public RecipeViewModel(IngredientDTO ingredientDTO)

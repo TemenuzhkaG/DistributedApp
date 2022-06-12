@@ -9,14 +9,12 @@ namespace MVC_FE.UtilsData
 {
     public class LoadData
     {
-        private  static readonly Uri url = new("https://localhost:44395/api/Categories");
+        private static readonly Uri url = new("https://localhost:44395/api/Categories");
 
         public static SelectList LoadCategoriesData()
         {
             var client = new WebClient();
-            var body = "";
-
-            body = client.DownloadString(url);
+            string body = client.DownloadString(url);
             var responseData = JsonConvert.DeserializeObject<List<RecipeViewModel>>(body);
             return new SelectList(responseData, "Id", "Name");
         }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Services;
 using Services.DTO;
-using System;
 using System.Collections.Generic;
 using WebAPI.ResponseHelper;
 
@@ -54,7 +53,7 @@ namespace WebAPI.Controllers
 
         // PUT api/<IngredientsController>/5
         [HttpPut("{id}")]
-        public string Put(int id, [FromBody] IngredientDTO ingredientDTO)
+        public string Put([FromBody] IngredientDTO ingredientDTO)
         {
             if (!ingredientDTO.Validate())
                 return "500 Data is not valid!";
@@ -78,6 +77,7 @@ namespace WebAPI.Controllers
         [HttpDelete("{id}")]
         public string Delete(int id)
         {
+
             if (service.Delete(id))
             {
                 message.Code = 200;

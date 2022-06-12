@@ -4,7 +4,6 @@ using Services.DTO;
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Services
 {
@@ -14,15 +13,11 @@ namespace Services
         private readonly List<RecipeDTO> recipeDTO;
         private RecipeDTO newRecipe;
         private Recipe myRecipe;
-        private readonly ICollection<Ingredient> ingredients;
-        private readonly ICollection<CategoryDTO> categoryDTO;
         public RecipeService()
         {
             this.recipeDTO = new List<RecipeDTO>();
             this.newRecipe = new RecipeDTO();
             this.myRecipe = new Recipe();
-            this.ingredients = new List<Ingredient>();
-            this.categoryDTO = new List<CategoryDTO>();
         }
 
         public List<RecipeDTO> Get()
@@ -40,8 +35,7 @@ namespace Services
                         PreparationTime = item.PreparationTime,
                         CookingTime = item.CookingTime,
                         PortionsCount = item.PortionsCount,
-                        CategoryId = item.CategoryId,
-                        Categories = this.categoryDTO.ToList()
+                        CategoryId = item.CategoryId
                     };
 
                     recipeDTO.Add(recipes);
@@ -66,9 +60,7 @@ namespace Services
                         PreparationTime = recipe.PreparationTime,
                         CookingTime = recipe.CookingTime,
                         PortionsCount = recipe.PortionsCount,
-                        CategoryId = recipe.CategoryId,
-                        Categories = this.categoryDTO.ToList(),
-                        Category = recipe.Category
+                        CategoryId = recipe.CategoryId
                     };
                 }
             }
@@ -87,8 +79,7 @@ namespace Services
                 CookingTime = recipeDTO.CookingTime,
                 PortionsCount = recipeDTO.PortionsCount,
                 CreatedOn = DateTime.UtcNow.Date,
-                CategoryId = recipeDTO.CategoryId,
-                Category = recipeDTO.Category
+                CategoryId = recipeDTO.CategoryId
             };
 
             try
@@ -126,9 +117,8 @@ namespace Services
                     myRecipe.PreparationTime = recipeDTO.PreparationTime;
                     myRecipe.CookingTime = recipeDTO.CookingTime;
                     myRecipe.PortionsCount = recipeDTO.PortionsCount;
-                    myRecipe.Ingredients = this.ingredients.ToList();
-                    myRecipe.ModifiedOn = DateTime.UtcNow.Date;
                     myRecipe.CategoryId = recipeDTO.CategoryId;
+
                     unitOfWork.RecipeRepository.Update(myRecipe);
                     unitOfWork.Save();
                 }
